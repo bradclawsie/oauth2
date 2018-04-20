@@ -18,7 +18,6 @@ import (
 	"time"
 
 	"context"
-	"context/ctxhttp"
 )
 
 // Token represents the credentials used to authorize
@@ -174,6 +173,23 @@ func providerAuthHeaderWorks(tokenURL string) bool {
 	return true
 }
 
+func localctxhttpDo((ctx context.Context, client *http.Client, req *http.Request) (*http.Response, error) {
+	if client == nil {
+		client = http.DefaultClient
+	}
+	resp, err := client.Do(req.WithContext(ctx))
+	// If we got an error, and the context has been canceled,
+	// the context's error is probably more useful.
+	if err != nil {
+		select {
+		case <-ctx.Done():
+			err = ctx.Err()
+		default:
+		}
+	}
+	return resp, err
+}
+
 func RetrieveToken(ctx context.Context, clientID, clientSecret, tokenURL string, v url.Values) (*Token, error) {
 	bustedAuth := !providerAuthHeaderWorks(tokenURL)
 	if bustedAuth {
@@ -192,7 +208,7 @@ func RetrieveToken(ctx context.Context, clientID, clientSecret, tokenURL string,
 	if !bustedAuth {
 		req.SetBasicAuth(url.QueryEscape(clientID), url.QueryEscape(clientSecret))
 	}
-	r, err := ctxhttp.Do(ctx, ContextClient(ctx), req)
+	r, err := localctxhttpDo(ctx, ContextClient(ctx), req)
 	if err != nil {
 		return nil, err
 	}
