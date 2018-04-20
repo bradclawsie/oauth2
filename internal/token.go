@@ -173,7 +173,7 @@ func providerAuthHeaderWorks(tokenURL string) bool {
 	return true
 }
 
-func localctxhttpDo((ctx context.Context, client *http.Client, req *http.Request) (*http.Response, error) {
+func localctxhttpDo(ctx context.Context, client *http.Client, req *http.Request) (*http.Response, error) {
 	if client == nil {
 		client = http.DefaultClient
 	}
