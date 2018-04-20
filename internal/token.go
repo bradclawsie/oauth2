@@ -17,8 +17,8 @@ import (
 	"strings"
 	"time"
 
-	"golang.org/x/net/context"
-	"golang.org/x/net/context/ctxhttp"
+	"context"
+	"context/ctxhttp"
 )
 
 // Token represents the credentials used to authorize

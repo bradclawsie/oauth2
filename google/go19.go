@@ -7,8 +7,8 @@
 package google
 
 import (
-	"golang.org/x/net/context"
-	"golang.org/x/oauth2"
+	"context"
+	"github.com/bradclawsie/oauth2"
 )
 
 // Credentials holds Google credentials, including "Application Default Credentials".

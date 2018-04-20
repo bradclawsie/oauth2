@@ -12,9 +12,9 @@ import (
 	"time"
 
 	"cloud.google.com/go/compute/metadata"
-	"golang.org/x/net/context"
-	"golang.org/x/oauth2"
-	"golang.org/x/oauth2/jwt"
+	"context"
+	"github.com/bradclawsie/oauth2"
+	"github.com/bradclawsie/oauth2/jwt"
 )
 
 // Endpoint is Google's OAuth 2.0 endpoint.
