@@ -1,3 +1,7 @@
+# Why this fork exists
+
+This fork is a single repo for Google OAuth2 that does not rely on outdated packages. It is also easier to integrate into tools like `dep`. Otherwise it can be considered a fork as of April 2018. It will be periodically updated if need be.
+
 # OAuth2 for Go
 
 [![Build Status](https://travis-ci.org/golang/oauth2.svg?branch=master)](https://travis-ci.org/golang/oauth2)
